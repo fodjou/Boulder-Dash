@@ -1,112 +1,54 @@
-package controller;
+/*
+ *
+ */
+package contract;
 
-import contract.ControllerOrder;
-import contract.IController;
-import contract.IUserOder;
-import contract.IView;
-import org.jetbrains.annotations.NotNull;
+import java.awt.event.KeyEvent;
 
 /**
- * The Class Controller.
+ * The Interface IController.
  */
+public interface IController {
 
-public final class Controller implements IController {
-
-	/** The view. */
-	private IView		view;
-
-	/** The model. */
-	private IUserOder model;
-
-	private static final int speed = 400;
-
-	/**
-	 * Instantiates a new controller.
-	 *
-	 * @param view
-	 *          the view
-	 * @param model
-	 *          the model
-	 */
-	public Controller(final IView view, final IUserOder model) {
-		this.setView(view);
-		this.setModel(model);
-	}
-
-	/**
-     * Control.
-     */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IController#control()
-	 */
-
-
-	/**
-     * Sets the view.
+    /**
+     * Gets the model.
      *
-     * @param pview
-     *            the new view
+     * @return the model
      */
-	private void setView(final IView pview) {
-		this.view = pview;
-	}
+    IModel getModel();
 
-	/**
-	 * Sets the model.
-	 *
-	 * @param model
-	 *          the new model
-	 */
-	private void setModel(final IUserOder model) {
-		this.model = model;
-	}
-
-	@Override
-	public void control() {
-
-	}
-
-	/**
-     * Order perform.
+    /**
+     * Gets the view.
      *
-     * @param controllerOrder
-     *            the controller order
+     * @return the view
      */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IController#orderPerform(contract.ControllerOrder)
-	 */
-	public void orderPerform(final @NotNull ControllerOrder controllerOrder) {
-		switch (controllerOrder) {
-			case DOWN:
-				this.getModel().getMyPlayer().moveDown();
+    IView getView();
 
-			case UP:
-				this.getModel().getMyPlayer().moveUp();
+    /**
+     * Move set.
+     *
+     * @param key the key
+     */
+    void moveSet(KeyEvent key);
 
-			case PUSH:
-				this.getModel().getMyPlayer().movePush();
+    /**
+     * Gets the diamond count.
+     *
+     * @return the diamond count
+     */
+    int getDiamondCount();
 
-				break;
-			case RIGHT:
-				this.getModel().getMyPlayer().moveRight();
+    /**
+     * Gets the diamond limit.
+     *
+     * @return the diamond limit
+     */
+    int getDiamondLimit();
 
-				break;
-			case LEFT:
-				this.getModel().getMyPlayer().moveLeft();
-
-				break;
-			case NOP:
-			default:
-				this.getModel().getMyPlayer().doNothing();
-				break;
-	}
-
+    /**
+     * Sets the diamond limit.
+     *
+     * @param diamondLimit the new diamond limit
+     */
+    void setDiamondLimit(int diamondLimit);
 }
-
-	private IUserOder getModel()
-	}
-	}
